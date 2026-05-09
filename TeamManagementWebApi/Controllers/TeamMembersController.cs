@@ -38,5 +38,20 @@ namespace TeamManagementWebApi.Controllers
 
             return Ok(newMember);
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteTeamMember(int id)
+        {
+            var member = teamMembers.FirstOrDefault(x => x.Id == id);
+
+            if (member == null)
+            {
+                return NotFound();
+            }
+
+            teamMembers.Remove(member);
+
+            return Ok(member);
+        }
     }
 }
